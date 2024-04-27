@@ -1,0 +1,17 @@
+from cryptocompare import coin
+from prettytable import PrettyTable
+
+def get_top_currencies(num=10):
+    top_currencies = coin.get_top_coin_by_market_cap(limit=num)
+    return top_currencies
+
+def display_currencies(currencies):
+    table = PrettyTable(['Rank', 'Name', 'Symbol', 'Market Cap (USD)', 'Price (USD)', 'Change (24h)'])
+    for currency in currencies:
+        table.add_row([currency['rank'], currency['name'], currency['symbol'], currency['market_cap_usd'], currency['price_usd'], currency['change_24h']])
+    print(table)
+
+if __name__ == "__main__":
+    num_currencies = 10
+    top_currencies = get_top_currencies(num_currencies)
+    display_currencies(top_currencies)
